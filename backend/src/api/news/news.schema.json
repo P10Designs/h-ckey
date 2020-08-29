@@ -1,0 +1,58 @@
+// TODO: Edit the schema, this is a copy of match schema
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Match",
+  "description": "The Match.",
+  "required": [
+    "local_id",
+    "visitor_id",
+    "league_id",
+    "played",
+    "user_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The ID of the user."
+    },
+    "local_id": {
+      "$id": "#/properties/email",
+      "type": "integer",
+      "title": "Id"
+    },
+    "visitor_id": {
+      "$id": "#/properties/name",
+      "type": "integer",
+      "title": "The users name."
+    },
+    "league_id": {
+      "$id": "#/properties/surname",
+      "type": "integer",
+      "title": "The users surname."
+    },
+    "played": {
+      "$id": "#/properties/username",
+      "type": "boolean",
+      "title": "The users username."
+    },
+    "user_id": {
+      "$id": "#/properties/password",
+      "type": "integer",
+      "title": "A hash of the users password."
+    },
+    "created_at": {
+      "$id": "#/properties/created_at",
+      "type": "string",
+      "title": "The creation date of the user."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "The date the user was last updated."
+    } 
+  }
+}

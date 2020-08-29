@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Match",
+  "description": "The Matches.",
+  "required": [
+    "local_id",
+    "visitor_id",
+    "league_id",
+    "played",
+    "user_id",
+    "match_time"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The ID of the match."
+    },
+    "local_id": {
+      "$id": "#/properties/local_id",
+      "type": "integer",
+      "title": "The id of the local team."
+    },
+    "visitor_id": {
+      "$id": "#/properties/visitor_id",
+      "type": "integer",
+      "title": "The id of the visitor team."
+    },
+    "vods_id": {
+      "$id": "#/properties/vods_id",
+      "type": "integer",
+      "title": "The id of the vod."
+    },
+    "league_id": {
+      "$id": "#/properties/league_id",
+      "type": "integer",
+      "title": "The id of the league of the match."
+    },
+    "played": {
+      "$id": "#/properties/played",
+      "type": "boolean",
+      "title": "Sets if the match has been played or not."
+    },
+    "user_id": {
+      "$id": "#/properties/user_id",
+      "type": "integer",
+      "title": "A id of the user that created the match."
+    },
+    "match_time": {
+      "$id": "#/properties/match_time",
+      "type": "string",
+      "title": "A time the match was or is going to be played."
+    },
+    "created_at": {
+      "$id": "#/properties/created_at",
+      "type": "string",
+      "title": "The creation date of the match."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "The date the user was last updated."
+    } 
+  }
+}

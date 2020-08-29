@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "Vods",
+  "description": "The Vods.",
+  "required": [
+    "local_id",
+    "local_result",
+    "visitor_id",
+    "visitor_result",
+    "league_id",
+    "user_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The ID of the user."
+    },
+    "local_id": {
+      "$id": "#/properties/email",
+      "type": "integer",
+      "title": "Id"
+    },
+    "visitor_id": {
+      "$id": "#/properties/name",
+      "type": "integer",
+      "title": "The users name."
+    },
+    "local_result": {
+      "$id": "#/properties/local_result",
+      "type": "integer",
+      "title": "The users name."
+    },
+    "visitor_result": {
+      "$id": "#/properties/visitor_result",
+      "type": "integer",
+      "title": "The users name."
+    },
+    "league_id": {
+      "$id": "#/properties/surname",
+      "type": "integer",
+      "title": "The users surname."
+    },
+    "user_id": {
+      "$id": "#/properties/password",
+      "type": "integer",
+      "title": "A hash of the users password."
+    },
+    "created_at": {
+      "$id": "#/properties/created_at",
+      "type": "string",
+      "title": "The creation date of the user."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "The date the user was last updated."
+    } 
+  }
+}
