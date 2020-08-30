@@ -1,7 +1,7 @@
 const { Model } = require('objection');
 
 const tableNames = require('../../constants/tableNames');
-const schema = require('./newsType.schema.json');
+const schema = require('./newsTypes.schema.json');
 
 class NewType extends Model {
   static get tableName(){

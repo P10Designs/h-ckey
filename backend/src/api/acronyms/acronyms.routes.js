@@ -1,32 +1,32 @@
 const express = require('express');
 
-const User = require('./users.model');
+const Acronym = require('./acronyms.model');
 
 const router = express.Router();
 
-router.get('/', async (req,res) => {
-  const users = await User
+router.get('/', async (req,res,next) => {
+  const acronyms = await Acronym
     .query()
-    .select('id', 'username')
+    .select('id', 'name')
     .where('deleted_at', null);
-  res.json(users);
+  res.json(acronyms);
 });
 
 router.get('/:id', async (req,res, next) => {
   const { id } = req.params;
   try {
-    const users = await User
+    const acronyms = await Acronym
       .query()
       .select('id', 'username')
       .where({
         deleted_at: null,
         id,
       });
-    if(undefined || users.length<1){
+    if(undefined || acronyms.length<1){
       res.status(404);
       throw error;
     }
-    res.json(users);
+    res.json(acronyms);
     
   } catch (error) {
     next()

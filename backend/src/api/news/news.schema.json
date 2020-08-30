@@ -1,15 +1,14 @@
-// TODO: Edit the schema, this is a copy of match schema
-
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
-  "title": "Match",
-  "description": "The Match.",
+  "title": "News",
+  "description": "The News.",
   "required": [
-    "local_id",
-    "visitor_id",
+    "name",
+    "image_url",
+    "new_url",
+    "new_type_id",
     "league_id",
-    "played",
     "user_id"
   ],
   "additionalProperties": false,
@@ -17,32 +16,40 @@
     "id": {
       "$id": "#/properties/id",
       "type": "integer",
-      "title": "The ID of the user."
+      "title": "The ID of the new."
     },
-    "local_id": {
-      "$id": "#/properties/email",
-      "type": "integer",
-      "title": "Id"
-    },
-    "visitor_id": {
+    "name": {
       "$id": "#/properties/name",
+      "type": "string",
+      "title": "The name of the new."
+    },
+    "image_url": {
+      "$id": "#/properties/image_url",
+      "type": "string",
+      "title": "The url of the image miniature."
+    },
+    "new_url": {
+      "$id": "#/properties/new_url",
+      "type": "string",
+      "title": "The url of the new page."
+    },
+    "new_type_id": {
+      "$id": "#/properties/new_type_id",
       "type": "integer",
-      "title": "The users name."
+      "title": "The id of the type of new."
     },
     "league_id": {
-      "$id": "#/properties/surname",
+      "$id": "#/properties/league_id",
       "type": "integer",
-      "title": "The users surname."
-    },
-    "played": {
-      "$id": "#/properties/username",
-      "type": "boolean",
-      "title": "The users username."
+      "title": "The id of the league the new is refers to."
     },
     "user_id": {
-      "$id": "#/properties/password",
+      "$id": "#/properties/user_id",
       "type": "integer",
-      "title": "A hash of the users password."
+      "title": "The id of the user that created the new.",
+      "examples": [
+        "1"
+      ]
     },
     "created_at": {
       "$id": "#/properties/created_at",

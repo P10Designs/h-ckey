@@ -1,28 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
-  "title": "Leagues",
-  "description": "The Leagues.",
+  "title": "Logos",
+  "description": "The logos of each team. ",
   "required": [
-    "name",
-    "logo_id"
+    "url"
   ],
   "additionalProperties": false,
   "properties": {
     "id": {
       "$id": "#/properties/id",
       "type": "integer",
-      "title": "The ID of the league."
+      "title": "The ID of the logo."
     },
-    "name": {
-      "$id": "#/properties/name",
+    "url": {
+      "$id": "#/properties/url",
       "type": "string",
-      "title": "The name of the league."
-    },
-    "logo_id": {
-      "$id": "#/properties/logo_id",
-      "type": "integer",
-      "title": "The id of the logo that´s stored on a different table."
+      "title": "The url of the logo on the cloud."
     },
     "created_at": {
       "$id": "#/properties/created_at",

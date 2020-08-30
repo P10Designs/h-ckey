@@ -1,43 +1,42 @@
 const express = require('express');
-const yup = require('yup');
 const bcrypt = require('bcrypt');
-
 const jwt = require('../../lib/jwt');
+const yup = require('yup');
+
 const User = require('../users/users.model');
+const { token } = require('morgan');
 
 const router = express.Router();
 
-const errorMessages = {
-  invalidLogin: 'Invalid login.',
-  invalidPassword: 'Invalid Password',
+const errors = {
+  invalidLogin: 'Invalid login credentials',
 }
 
-const loginSchema = yup.object().shape({
-  username: yup.string().trim().min(2).matches(/[a-z ]/i).required(),
+const schema = yup.object().shape({
+  username: yup.string().trim().min(2).required(),
+  password: yup.string().trim().min(8).max(100).required(),
 });
-
-
 
 router.post('/login', async (req, res, next) => {
   const {
     username,
-    password
+    password,
   } = req.body;
+
   try {
-    await loginSchema.validate({
-      username,
-    }, {
-      abortEarly: false,
-    });
+    await schema.validate({
+        username,
+        password,
+      },{ abortEarly: false });
     const user = await User.query().where({ username }).first();
     if(!user){
-      const error = new Error(errorMessages.invalidLogin);
+      const error = new Error(errors.invalidLogin);
       res.status(403);
       throw error;
     }
-    const validPassword = await bcrypt.compare(password, user.password);
-    if(!validPassword){
-      const error = new Error(errorMessages.invalidLogin);
+    const validPassword =  await bcrypt.compare(password, user.password);
+    if (!validPassword){
+      const error = new Error(errors.invalidLogin);
       res.status(403);
       throw error;
     }
@@ -45,15 +44,14 @@ router.post('/login', async (req, res, next) => {
       id: user.id,
       username,
     };
-    const token = await jwt.sign(payload);
+    const token = await jwt.sign(payload)
     res.json({
-      user: payload,
-      token,
+      user:payload,
+      token
     });
   } catch (error) {
     next(error);
   }
 });
-
 
 module.exports = router;

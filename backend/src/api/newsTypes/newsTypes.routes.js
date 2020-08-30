@@ -1,12 +1,12 @@
 const express = require('express');
 
-const NewType = require('./newsType.model');
+const NewType = require('./newsTypes.model');
 const router = express.Router();
 
 router.get('/', async (req,res) => {
   const newsType = await NewType
     .query()
-    .select('id', 'type')
+    .select('id', 'name')
     .where('deleted_at', null);
   res.json(newsType);
 });
@@ -16,7 +16,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const newsType = await NewType
       .query()
-      .select('id', 'type')
+      .select('id', 'name')
       .where({
         deleted_at: null,
         id,

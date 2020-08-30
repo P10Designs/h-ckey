@@ -1,32 +1,32 @@
 const express = require('express');
 
-const User = require('./users.model');
+const Logos = require('./logos.model');
 
 const router = express.Router();
 
-router.get('/', async (req,res) => {
-  const users = await User
+router.get('/', async (req,res,next) => {
+  const logos = await Logos
     .query()
-    .select('id', 'username')
+    .select('id', 'logo_url')
     .where('deleted_at', null);
-  res.json(users);
+  res.json(logos);
 });
 
 router.get('/:id', async (req,res, next) => {
   const { id } = req.params;
   try {
-    const users = await User
+    const logos = await Logos
       .query()
-      .select('id', 'username')
+      .select('id', 'logo_url')
       .where({
         deleted_at: null,
         id,
       });
-    if(undefined || users.length<1){
+    if(undefined || acronyms.length<1){
       res.status(404);
       throw error;
     }
-    res.json(users);
+    res.json(logos);
     
   } catch (error) {
     next()

@@ -25,5 +25,4 @@ module.exports = teams
   .data
   .map(({name, acronym}) => ({
     name,
-    acronym,
   }));

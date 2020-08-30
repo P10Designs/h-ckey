@@ -1,10 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
-  "title": "Leagues",
-  "description": "The Leagues.",
+  "title": "Teams",
+  "description": "The team.",
   "required": [
     "name",
+    "acronym_id",
     "logo_id"
   ],
   "additionalProperties": false,
@@ -12,17 +13,31 @@
     "id": {
       "$id": "#/properties/id",
       "type": "integer",
-      "title": "The ID of the league."
+      "title": "The ID of the team."
     },
     "name": {
       "$id": "#/properties/name",
       "type": "string",
-      "title": "The name of the league."
+      "title": "The name of the team .",
+      "examples": [
+        "Tres Cantos Pc"
+      ]
+    },
+    "acronym_id": {
+      "$id": "#/properties/acronym_id",
+      "type": "integer",
+      "title": "The id of the acronym of the team that it´s stored on a different table.",
+      "examples": [
+        "1"
+      ]
     },
     "logo_id": {
       "$id": "#/properties/logo_id",
       "type": "integer",
-      "title": "The id of the logo that´s stored on a different table."
+      "title": "The id of the logo of the team that it´s stored on a different table.",
+      "examples": [
+        "1"
+      ]
     },
     "created_at": {
       "$id": "#/properties/created_at",

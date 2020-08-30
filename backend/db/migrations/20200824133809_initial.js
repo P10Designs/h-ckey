@@ -27,7 +27,7 @@ exports.up = async (knex) => {
   await knex.schema.createTable(tableNames.acronym ,(table) => {
     table.increments().notNullable();
     name(table).notNullable().unique();
-    addDefaultColumns();
+    addDefaultColumns(table);
   });
 
   await knex.schema.createTable(tableNames.logo, (table) => {
@@ -59,8 +59,9 @@ exports.up = async (knex) => {
 
   await knex.schema.createTable(tableNames.new, (table) => {
     table.increments().notNullable();
-    name(name).notNullable();
+    name(table).notNullable();
     url(table, 'image').notNullable();
+    url(table, 'new').notNullable().unique();
     references(table, tableNames.new_type, true);
     references(table, tableNames.league, true);
     references(table,tableNames.user, true);

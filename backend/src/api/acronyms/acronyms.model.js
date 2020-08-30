@@ -1,11 +1,11 @@
 const { Model } = require('objection');
 
 const tableNames = require('../../constants/tableNames');
-const schema = require('./leagues.schema.json');
+const schema = require('./acronyms.schema.json');
 
-class Leagues extends Model {
+class Acronym extends Model {
   static get tableName() {
-    return tableNames.league;
+    return tableNames.acronym;
   }
 
   static get jsonSchema(){
@@ -13,4 +13,4 @@ class Leagues extends Model {
   }
 }
 
-module.exports = Leagues;
+module.exports = Acronym;
