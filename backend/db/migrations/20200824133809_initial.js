@@ -1,5 +1,3 @@
-// TODO: Re do migrations
-
 const Knex = require('knex');
 
 const tableNames = require('../../src/constants/tableNames');
@@ -47,31 +45,39 @@ exports.up = async (knex) => {
   await knex.schema.createTable(tableNames.team, (table) =>{
     table.increments().notNullable();
     name(table).notNullable().unique();
-    table.string('acronym', 5).notNullable();
-    url(table, 'logo')// TODO: Get all logos and make this function nullable
+    references(table, tableNames.acronym, true);
+    references(table, tableNames.logo, true);
     addDefaultColumns(table);
   });
 
   await knex.schema.createTable(tableNames.league, (table) => {
     table.increments().notNullable();
     name(table).notNullable().unique();
+    references(table, tableNames.logo, true);
     addDefaultColumns(table);
   });
 
+  await knex.schema.createTable(tableNames.new, (table) => {
+    table.increments().notNullable();
+    name(name).notNullable();
+    url(table, 'image').notNullable();
+    references(table, tableNames.new_type, true);
+    references(table, tableNames.league, true);
+    references(table,tableNames.user, true);
+    addDefaultColumns(table);
+  });
 
   await knex.schema.createTable(tableNames.vods, (table) => {
     table.increments().notNullable();
     references(table, tableNames.team, true, 'local');
-    table.integer('local_result').notNullable();
     references(table, tableNames.team, true, 'visitor');
+    table.integer('local_result').notNullable();
+    table.integer('visitor_result').notNullable();
     references(table, tableNames.league, true);
     references(table, tableNames.user, true);
-    table.integer('visitor_result').notNullable();
-    table.string('video_url').notNullable();
+    url(table, 'video').notNullable();
     addDefaultColumns(table);
   });
-
-  // TODO: Update the database, changes had been made
 
   await knex.schema.createTable(tableNames.match, (table) => {
     table.increments().notNullable();
@@ -85,24 +91,19 @@ exports.up = async (knex) => {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.new, (table) => {
-    table.increments().notNullable();
-    name(name).notNullable();
-    references(table, tableNames.league, true);
-    table.string('image_url').notNullable();
-    references(table,tableNames.user, true);
-    addDefaultColumns(table);
-  });
+ 
 };
 
 exports.down = async (knex) => {
   await Promise.all([
-    tableNames.new,
     tableNames.match,
-    tableNames.new_type,
     tableNames.vods,
+    tableNames.new,
     tableNames.league,
     tableNames.team,
+    tableNames.new_type,
+    tableNames.logo,
+    tableNames.acronym,
     tableNames.user,
   ].map((tableName) => knex.schema.dropTableIfExists(tableName)));
 };
