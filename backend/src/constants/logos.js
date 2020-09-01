@@ -11,19 +11,18 @@ const csvData =  fs
       '..',
       'db',
       'sources',
-      'leagues.csv',
+      'logos.csv',
     ),
     'utf8',
 );
 
-const league = Papa.parse(csvData, {
+const logo_url = Papa.parse(csvData, {
   header: true,
 });
 
 
-module.exports = league
+module.exports = logo_url
   .data
-  .map(({name, logo_id}) => ({
-    name,
-    logo_id,
+  .map(({logo_url}) => ({
+    logo_url,
   }));

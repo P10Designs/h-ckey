@@ -11,19 +11,18 @@ const csvData =  fs
       '..',
       'db',
       'sources',
-      'leagues.csv',
+      'acronimos.csv',
     ),
     'utf8',
 );
 
-const league = Papa.parse(csvData, {
+const acronyms = Papa.parse(csvData, {
   header: true,
 });
 
 
-module.exports = league
+module.exports = acronyms
   .data
-  .map(({name, logo_id}) => ({
+  .map(({name}) => ({
     name,
-    logo_id,
   }));

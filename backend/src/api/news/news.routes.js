@@ -44,7 +44,7 @@ const schema = yup.object().shape({
   name: yup.string().trim().required(),
   image_url: yup.string().trim().max(2000).required(),
   new_url: yup.string().trim().max(2000).required(),
-  type_id: yup.number().required(),
+  new_type_id: yup.number().required(),
   league_id: yup.number().required(),
   user_id: yup.number().required(),
 });
@@ -55,7 +55,7 @@ router.post('/add', async (req, res, next) => {
     name,
     image_url,
     new_url,
-    type_id,
+    new_type_id,
     league_id
   } = req.body; 
   try {
@@ -65,13 +65,14 @@ router.post('/add', async (req, res, next) => {
       res.status(403)
       throw error
     }
+    const user_id = payload.payload.id;
     await schema.validate({
       name,
       image_url,
       new_url,
-      type_id,
+      new_type_id,
       league_id,
-      user_id: payload.user_id,
+      user_id
     },{ abortEarly: false });
     const toAdd = await New
       .query()
@@ -79,9 +80,9 @@ router.post('/add', async (req, res, next) => {
         name,
         image_url,
         new_url,
-        type_id,
+        new_type_id,
         league_id,
-        user_id: payload.user_id,
+        user_id
       });
     res.json({
       message: 'New was added ✅', 
@@ -99,7 +100,7 @@ router.post('/update/:id', async (req, res, next) => {
     name,
     image_url,
     new_url,
-    type_id,
+    new_type_id,
     league_id
   } = req.body;
   const { id } = req.params;
@@ -110,13 +111,14 @@ router.post('/update/:id', async (req, res, next) => {
       res.status(403)
       throw error
     }
+    const user_id = payload.payload.id;
     await schema.validate({
       name,
       image_url,
       new_url,
-      type_id,
+      new_type_id,
       league_id,
-      user_id: payload.user_id,
+      user_id,
     },{ abortEarly: false });
     const toAdd = await New
       .query()
@@ -124,9 +126,9 @@ router.post('/update/:id', async (req, res, next) => {
         name,
         image_url,
         new_url,
-        type_id,
+        new_type_id,
         league_id,
-        user_id: payload.user_id,
+        user_id,
         updated_at: new Date().toISOString(),
       })
       .where({ id });

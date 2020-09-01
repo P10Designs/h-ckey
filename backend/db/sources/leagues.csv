@@ -1,5 +1,10 @@
-name;;;;;;
-Liga Elite Masculina;;;;;;
-Liga Elite Femenina;;;;;;
-Liga Oro Masculina;;;;;;
-Liga Oro Femenina;;;;;;
+name;logo_id;;;;;
+Liga Elite Masculina;1;;;;;
+Liga Elite Femenina;2;;;;;
+Liga Oro Masculina;4;;;;;
+Liga Oro Femenina;3;;;;;
+Liga Plata Masculina;5;;;;
+Liga Elite Infantil;5;;;;;
+Liga Oro Infantil;5;;;;;
+Liga Elite Alevín;5;;;;;
+Liga Oro Alevín;5;;;;;

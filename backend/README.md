@@ -25,7 +25,7 @@
 
   # 3.- API
 
-    [ ] - SCHEMA
+    [x] - SCHEMA
       [x] - User
       [x] - Acronym
       [x] - Logo
@@ -34,9 +34,9 @@
       [x] - League
       [x] - New
       [x] - Vod
-      [ ] - Match
+      [x] - Match
       
-    [ ] - MODELS
+    [x] - MODELS
       [x] - User
       [x] - Acronym
       [x] - Logo
@@ -45,9 +45,9 @@
       [x] - League
       [x] - New
       [x] - Vod
-      [ ] - Match
+      [x] - Match
 
-    [ ] - ROUTES
+    [x] - ROUTES
       [x] - User
       [x] - Acronym
       [x] - Logo
@@ -56,9 +56,8 @@
       [x] - League
       [x] - Auth
       [x] - New
-      [ ] - Vod
-      [ ] - Match
+      [x] - Vod
+      [x] - Match
 
 
 // TODO: Check if stream url and settings is needed or table for live/futures needs to be added
-// TODO: VODS routes

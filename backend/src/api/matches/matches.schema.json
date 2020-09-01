@@ -1,23 +1,22 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
-  "title": "User",
-  "description": "The User.",
+  "title": "Matches",
+  "description": "The Match.",
   "required": [
     "local_id",
     "visitor_id",
-    "local_result",
-    "visitor_result",
+    "played",
+    "match_time",
     "league_id",
-    "user_id",
-    "video_url"
+    "user_id"
   ],
   "additionalProperties": false,
   "properties": {
     "id": {
       "$id": "#/properties/id",
       "type": "integer",
-      "title": "The ID of the vod."
+      "title": "The ID of the match."
     },
     "local_id": {
       "$id": "#/properties/local_id",
@@ -27,32 +26,32 @@
     "visitor_id": {
       "$id": "#/properties/visitor_id",
       "type": "integer",
-      "title": "The id of the visitant team."
+      "title": "The id of the visitor team."
     },
-    "local_result": {
-      "$id": "#/properties/local_result",
-      "type": "integer",
-      "title": "The local result."
+    "played": {
+      "$id": "#/properties/played",
+      "type": "boolean",
+      "title": "If match has been played or not."
     },
-    "visitor_result": {
-      "$id": "#/properties/visitor_result",
-      "type": "integer",
-      "title": "The visitor result."
+    "match_time": {
+      "$id": "#/properties/match_time",
+      "type": "string",
+      "title": "The match date."
     },
     "league_id": {
       "$id": "#/properties/league_id",
       "type": "integer",
-      "title": "A id of the league."
+      "title": "The id of the league."
     },
     "user_id": {
       "$id": "#/properties/user_id",
       "type": "integer",
-      "title": "A id of the user that created the match."
+      "title": "The id of the user that created the match."
     },
-    "video_url": {
-      "$id": "#/properties/video_url",
+    "vod_id": {
+      "$id": "#/properties/vod_id",
       "type": "string",
-      "title": "The url of the vod, regularly wil be a link to youtube."
+      "title": "The id of the vod, if exists."
     },
     "created_at": {
       "$id": "#/properties/created_at",

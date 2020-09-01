@@ -11,6 +11,6 @@ exports.seed = async (knex) => {
     tableNames.new_type,
   ].map((table) => knex(table).del()));
 
-  await knex(tableNames.new_type).insert({type: 'Articulo'});
-  await knex(tableNames.new_type).insert({type: 'Video'});
+  await knex(tableNames.new_type).insert({name: 'Articulo'});
+  await knex(tableNames.new_type).insert({name: 'Video'});
 };

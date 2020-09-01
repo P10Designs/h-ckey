@@ -11,6 +11,8 @@ const teams = require('./teams/teams.routes');
 const leagues = require('./leagues/leagues.routes');
 const auth = require('./auth/auth.routes');
 const news = require('./news/news.routes');
+const vods = require('./vods/vods.routes');
+const matches = require('./matches/matches.routes');
 
 const router = express.Router();
 
@@ -30,6 +32,8 @@ router.use('/leagues', leagues)
 router.use('/leagues', leagues)
 router.use('/auth', auth)
 router.use('/news', news)
+router.use('/vods', vods)
+router.use('/matches', matches)
 
 
 module.exports = router;

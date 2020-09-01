@@ -8,7 +8,7 @@ router.get('/', async (req,res) => {
     .query()
     .withGraphFetched('acronym', 'logo')
     .select('id', 'name')
-    .where('deled_at',null);
+    .where('deleted_at',null);
   res.json(teams);
 });
 

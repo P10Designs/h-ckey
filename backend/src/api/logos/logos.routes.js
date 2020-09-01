@@ -19,10 +19,10 @@ router.get('/:id', async (req,res, next) => {
       .query()
       .select('id', 'logo_url')
       .where({
-        deleted_at: null,
+        deleted_at:null,
         id,
       });
-    if(undefined || acronyms.length<1){
+    if(undefined || logos.length<1){
       res.status(404);
       throw error;
     }

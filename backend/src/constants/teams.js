@@ -23,6 +23,8 @@ const teams = Papa.parse(csvData, {
 
 module.exports = teams
   .data
-  .map(({name, acronym}) => ({
+  .map(({name, acronym_id, logo_id}) => ({
     name,
+    acronym_id,
+    logo_id,
   }));

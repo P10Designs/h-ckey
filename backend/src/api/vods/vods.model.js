@@ -19,7 +19,7 @@ class Vod extends Model {
     return {
       local :{
         relation: Model.HasOneRelation,
-        classModel: Team,
+        modelClass: Team,
         join: {
           from: `${tableNames.vods}.local_id`,
           to: `${tableNames.team}.id`,
@@ -27,7 +27,7 @@ class Vod extends Model {
       },
       visitor :{
         relation: Model.HasOneRelation,
-        classModel: Team,
+        modelClass: Team,
         join: {
           from: `${tableNames.vods}.visitor_id`,
           to: `${tableNames.team}.id`,
@@ -35,18 +35,10 @@ class Vod extends Model {
       },
       league: {
         relation: Model.HasOneRelation,
-        classModel: League,
+        modelClass: League,
         join: {
           from: `${tableNames.vods}.league_id` ,
           to: `${tableNames.league}.id`,
-        },
-      },
-      user: {
-        relation: Model.HasOneRelation,
-        modelClass: User,
-        join: {
-          from: `${tableNames.vods}.user_id`,
-          to: `${tableNames.user}.id`,
         },
       },
     }
