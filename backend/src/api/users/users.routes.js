@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req,res) => {
   const users = await User
     .query()
-    .select('id', 'username')
+    .select('id', 'username', 'last_login')
     .where('deleted_at', null);
   res.json(users);
 });
@@ -17,7 +17,7 @@ router.get('/:id', async (req,res, next) => {
   try {
     const users = await User
       .query()
-      .select('id', 'username')
+      .select('id', 'username', 'last_login')
       .where({
         deleted_at: null,
         id,

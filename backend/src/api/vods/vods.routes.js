@@ -151,4 +151,30 @@ router.post('/update/:id', async (req, res, next) => {
   }
 });
 
+router.delete('/delete/:id', async (req, res, next) => {
+  const {
+    jwt
+  } = req.body;
+  const { id } = req.params;
+  try {
+    const payload = await jwToken.verify(jwt);
+    if(!payload){
+      const error = new Error(errors.un);
+      res.status(403);
+      throw error
+    }
+    const user_id = payload.payload.id;
+   
+    const toDelete = await Vod
+    .query()
+    .deleteById(id);
+  res.json({
+    message: 'Vod was deleted ✅', 
+    new: toDelete,
+  })
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = router;

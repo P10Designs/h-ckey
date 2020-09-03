@@ -2,64 +2,50 @@ const express = require('express');
 const yup = require('yup');
 
 const router = express.Router();
-const Match = require('./matches.model');
+const Live = require('./lives.model');
 const jwToken = require('../../lib/jwt');
 
 
 router.get('/', async (req, res, next) => {
-  const matches = await Match
+  const lives = await Live
     .query()
-    .withGraphFetched('local')
-    .withGraphFetched('visitor')
-    .withGraphFetched('league')
-    .withGraphFetched('vod')
-    .select('id', 'played', 'match_time','user_id')
+    .withGraphFetched('match')
+    .select('id', 'stream_url')
     .where('deleted_at', null);
-  res.json(matches)
+  res.json(lives)
 });
 
 router.get('/:id', async (req, res, next) =>{
   const { id } = req.params;
   try {
-    const matches = await Match
+    const lives = await Live
     .query()
-    .withGraphFetched('local')
-    .withGraphFetched('visitor')
-    .withGraphFetched('league')
-    .withGraphFetched('vod')
-    .select('id', 'played', 'match_time','user_id')
+    .withGraphFetched('match')
+    .select('id', 'stream_url')
     .where({
+      deleted_at: null,
       id,
     });
     if(undefined || matches.length<1){
       res.status(404)
       throw error;
     }
-    res.json(matches)
+    res.json(lives)
   } catch (error) {
     next()
   }
 });
 
 const schema = yup.object().shape({
-  local_id: yup.number().required(),
-  visitor_id: yup.number().required(),
-  league_id: yup.number().required(),
-  vod_id: yup.number(),
-  played: yup.boolean().required(),
-  match_time: yup.string().trim().required(),
-  user_id: yup.number().required(),
+  stream_url: yup.string().trim().max(2000).required(),
+  match_id: yup.number().required(),
 });
 
 router.post('/add', async (req, res, next) => {
   const {
     jwt,
-    local_id,
-    visitor_id,
-    league_id,
-    vod_id,
-    played,
-    match_time,
+    stream_url,
+    match_id,
   } = req.body;
 
   try {
@@ -69,30 +55,19 @@ router.post('/add', async (req, res, next) => {
       res.status(403);
       throw error;
     }
-    const user_id = payload.payload.id;
     await schema.validate({
-      local_id,
-      visitor_id,
-      league_id,
-      vod_id,
-      played,
-      match_time,
-      user_id,
+      stream_url, 
+      match_id
     }, { abortEarly:false });
-    const toAdd = await Match
+    const toAdd = await Live
       .query()
       .insert({
-        local_id,
-        visitor_id,
-        league_id,
-        vod_id,
-        played,
-        match_time,
-        user_id,
+       stream_url,
+       match_id,
       });
     
     res.json({
-      message: 'Match has been added ✅',
+      message: 'Live event has been added ✅',
       match: toAdd,
     })
   } catch (error) {
@@ -104,12 +79,8 @@ router.post('/add', async (req, res, next) => {
 router.post('/update/:id', async (req, res, next) => {
   const {
     jwt,
-    local_id,
-    visitor_id,
-    league_id,
-    vod_id,
-    played,
-    match_time,
+    stream_url,
+    match_id,
   } = req.body;
   const { id } = req.params;
   try {
@@ -121,24 +92,14 @@ router.post('/update/:id', async (req, res, next) => {
     }
     const user_id = payload.payload.id;
     await schema.validate({
-      local_id,
-      visitor_id,
-      league_id,
-      vod_id,
-      played,
-      match_time,
-      user_id,
+      stream_url,
+      match_id,
     }, { abortEarly:false });
-    const toUpdate = await Match
+    const toUpdate = await Live
       .query()
       .insert({
-        local_id,
-        visitor_id,
-        league_id,
-        vod_id,
-        played,
-        match_time,
-        user_id,
+        stream_url,
+        match_id,
         updated_at: new Date().toISOString(),
       })
       .where({
@@ -147,7 +108,7 @@ router.post('/update/:id', async (req, res, next) => {
       });
     
     res.json({
-      message: 'Match has been updated ✅',
+      message: 'Live event has been updated ✅',
       match: toUpdate,
     })
   } catch (error) {
@@ -167,11 +128,11 @@ router.delete('/delete/:id', async (req, res, next) => {
       res.status(403);
       throw error
     }
-    const toDelete = await Match
+    const toDelete = await Live
     .query()
     .deleteById(id);
   res.json({
-    message: 'Match was deleted ✅', 
+    message: 'Live event was deleted ✅', 
     new: toDelete,
   })
   } catch (error) {

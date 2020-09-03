@@ -13,6 +13,7 @@ const auth = require('./auth/auth.routes');
 const news = require('./news/news.routes');
 const vods = require('./vods/vods.routes');
 const matches = require('./matches/matches.routes');
+const lives = require('./lives/lives.routes');
 
 const router = express.Router();
 
@@ -34,6 +35,7 @@ router.use('/auth', auth)
 router.use('/news', news)
 router.use('/vods', vods)
 router.use('/matches', matches)
+router.use('/lives', lives)
 
 
 module.exports = router;

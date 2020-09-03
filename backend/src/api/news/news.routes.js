@@ -14,7 +14,8 @@ router.get('/', async (req, res, next) => {
     .query()
     .withGraphFetched('league', 'type', 'user')
     .select('id', 'image_url', 'name', 'new_url')
-    .where('deleted_at', null);
+    .where('deleted_at', null)
+    .orderBy('created_at', 'desc');
   res.json(news);
 }); 
 
@@ -136,6 +137,30 @@ router.post('/update/:id', async (req, res, next) => {
       message: 'New was added ✅', 
       new: toAdd,
     })
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.delete('/delete/:id', async (req, res, next) => {
+  const {
+    jwt
+  } = req.body;
+  const { id } = req.params;
+  try {
+    const payload = await jwToken.verify(jwt);
+    if(!payload){
+      const error = new Error(errors.un);
+      res.status(403);
+      throw error
+    }
+    const toDelete = await New
+    .query()
+    .deleteById(id);
+  res.json({
+    message: 'New was deleted ✅', 
+    new: toDelete,
+  })
   } catch (error) {
     next(error)
   }

@@ -8,4 +8,5 @@ module.exports = {
   match: 'match',
   new: 'new',
   new_type: 'new_type',
+  live: 'live'
 };

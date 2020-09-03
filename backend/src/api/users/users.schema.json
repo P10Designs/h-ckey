@@ -3,13 +3,6 @@
   "type": "object",
   "title": "User",
   "description": "The User.",
-  "required": [
-    "email",
-    "name",
-    "surname",
-    "username",
-    "password"
-  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -53,6 +46,12 @@
       "$id": "#/properties/password",
       "type": "string",
       "title": "A hash of the users password."
+    },
+    
+    "last_login": {
+      "$id": "#/properties/last_login",
+      "type": "string",
+      "title": "The last_login date of the user."
     },
     "created_at": {
       "$id": "#/properties/created_at",

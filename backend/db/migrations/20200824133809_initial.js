@@ -8,6 +8,7 @@ const {
   addDefaultColumns,
   name,
 } = require('../utils/tableUtils');
+const { user } = require('../../src/constants/tableNames');
 /** table.string
  * @param {Knex} knex 
  */
@@ -92,11 +93,18 @@ exports.up = async (knex) => {
     addDefaultColumns(table);
   });
 
+  await knex.schema.createTable(tableNames.live, (table) => {
+    table.increments().notNullable();
+    url(table, 'stream').notNullable();
+    references(table, tableNames.match, true);
+    addDefaultColumns(table);
+  });
  
 };
 
 exports.down = async (knex) => {
   await Promise.all([
+    tableNames.live,
     tableNames.match,
     tableNames.vods,
     tableNames.new,
