@@ -1,5 +1,15 @@
 /* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family:'Colfax';
+  font-weight:normal;
+  src:url("https://lolstatic-a.akamaihd.net/webfonts/live/fonts/colfax/ColfaxWebRegular.woff2") format('woff2')
+ }
+ @font-face {
+  font-family:'Colfax';
+  font-weight:bold;
+  src:url("https://lolstatic-a.akamaihd.net/webfonts/live/fonts/colfax/ColfaxWebMedium.woff2") format('woff2')
+ }
 
 * {
   margin: 0;
@@ -271,17 +281,6 @@ body {
   }
 }
 
-@media(max-width:720px){
-
-}
-
-@media(min-width:1024px) and (max-width:1075px){
-  
-}
-@media(min-width:1076px){
-
-}
-
 /* MATCH WIDGET */
 
 @media all{
@@ -290,12 +289,14 @@ body {
     height: 139px;
     background-color:#0A0E13 ;
     border-bottom: 1px solid #2f2f2f;
+    
   }
   .match-widget .match-container {
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
     height: 100%;
   }
-
 
   .match-widget .settings{
     display:flex;
@@ -313,65 +314,109 @@ body {
     transition: 0.3s;
   }
 
-  .match-widget .left-arrow{
-    display: flex;
-    border-right: 1px solid #252c32;
-    left: 0;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 40px;
-    height: 139px;
-    z-index: 20;
-    cursor: pointer;
-    background-color: #0F1519;
-    transition: 0.3s;
-  }
-  .match-widget .right-arrow{
-    display: flex;
-    border-left: 1px solid #252c32;
-    right: 0;
-    margin-top:40px;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 40px;
-    height: calc(139px - 40px);
-    z-index: 20;
-    cursor: pointer;
-    background-color: #0F1519;
-    transition: 0.3s;
-  }
-  .match-widget .left-arrow:hover{
-    background-color:#0A0E13 ;
-  }
-  .match-widget .right-arrow:hover{
-    background-color:#0A0E13 ;
-  }
-  .match-widget .settings:hover{
-    background-color:#0A0E13 ;
-  }
-
   .match-widget .match-container{
     height: 100%;
-    width: 150px;
-    border-right: 1px solid #252c32;
     position:relative;
     left: 0;
     transition: 0.2s;
   }
-  .match-widget .match-container .match{
-    width:100%;
+
+  .match-widget .match-container .match:last-child{
+    border-right: 1px solid #252c32;
   }
 
+  .match-widget .match-container .match{
+    border-left: 1px solid #252c32;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Colfax',Helvetica,sans-serif !important;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 0 0 34px;
+  }
+  .match-container .match:not(.dayStarter){
+    margin-top: 21.5px;
+  }
+  .match-container .teams {
+    padding-top: 4px;
+  }
+  .match-container .teams .local,
+  .match-container .teams .visitor{
+    padding-top: 2px;
+  }
+  .match-widget .team-logo{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+  }
+  .match-container .teams .acronym{
+    font-size: 1.6rem;
+    margin: 9px 8px 0 8px;
+  }
+  .match-container .day span{
+    color: #8fa3b0;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+  .match-container .time span {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-items: initial;
+  }
+  .match-container .time::before, ::after {
+    margin: 0;
+    padding: 0;
+}
 }
 
+/* LEAGUE MENU SELECTOR */
 
-@media(max-width:721px){
-  .match-widget .match-container {
-    overflow-x: scroll;
+@media all{
+  .league-selector{
+    display: flex;
   }
-  .match-widget .match-container::we::-webkit-scrollbar {
-    display: none;
+  .content{
+    height: 540px;
+    background-image: url("https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/blt3f7055865abbc129/5f167f89e20d7e7af7129a58/HeaderFinal.jpg?width=2200&height=");
+    background-position: center center;
+    background-size: cover;
+    color:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 40px ;
+    
+  }
+  .content h1, .content h2{
+    font-size: 50px;
+  }
+}
+
+@media(max-width:720px){
+  .content{
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: end;
+  }
+  .content h1{
+    margin: 0 15px;
+  }
+  .content h2{
+    margin: 0 0 30px 15px;
+  }
+}
+
+@media(max-width: 1075px) and (min-width: 721px){
+  .content{
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
   }
 }
