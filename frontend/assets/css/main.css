@@ -372,12 +372,9 @@ body {
 }
 }
 
-/* LEAGUE MENU SELECTOR */
+/* BANNER WIDGET */
 
 @media all{
-  .league-selector{
-    display: flex;
-  }
   .content{
     height: 540px;
     background-image: url("https://images.contentstack.io/v3/assets/bltad9188aa9a70543a/blt3f7055865abbc129/5f167f89e20d7e7af7129a58/HeaderFinal.jpg?width=2200&height=");
@@ -407,7 +404,7 @@ body {
     margin: 0 15px;
   }
   .content h2{
-    margin: 0 0 30px 15px;
+    margin: 0 0 15px 15px;
   }
 }
 
@@ -418,5 +415,64 @@ body {
     flex-direction: column;
     align-items: baseline;
     justify-content: center;
+  }
+}
+
+/* NEWS WIDGET */
+
+@media all{
+  .new-title {
+    margin: 15px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+  } 
+  .news-content .new{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+  }
+  .news-content .new .text{
+    display: flex;
+    flex-direction: column;
+  }
+  .news-content .new .text .title{
+    color: #fff;  
+    font-weight: 700;
+  }
+  .news-content .new .text .type{
+    color: #8FA3B0;
+    font-weight: bold;
+  }
+  .more{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .more .more-button{
+    margin: 20px;
+    color: #000;
+    display: inline-block;
+    background-color: #0877b8;
+    text-align: center;
+    border-radius: 50px;
+    width: 170px;
+    text-decoration: none;
+    height: 30px;
+    vertical-align: middle;
+  }
+  
+}
+
+@media(max-width:721px){
+  .news-content .new {
+    margin: 20px;
+  }
+  .news-content .new .text{
+    margin-left: 10px;
+  }
+  .news-content .new .mini{
+    background-size: cover;
+    height: 75px;
+    width: 135px;
   }
 }
