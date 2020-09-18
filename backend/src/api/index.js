@@ -30,7 +30,6 @@ router.use('/logos', logos);
 router.use('/newtypes', newTypes)
 router.use('/teams', teams)
 router.use('/leagues', leagues)
-router.use('/leagues', leagues)
 router.use('/auth', auth)
 router.use('/news', news)
 router.use('/vods', vods)
