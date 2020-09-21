@@ -17,7 +17,8 @@ router.get('/:id', async (req, res, next) => {
   try {
     const teams = await Team
       .query()
-      .withGraphFetched('acronym', 'logo')
+      .withGraphFetched('acronym')
+      .withGraphFetched('logo')
       .select('id', 'name')
       .where({
         deleted_at: null, 

@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const compression = require('compression');
 const helmet = require('helmet');
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(compression());
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req,res) => {

@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
     .withGraphFetched('league')
     .withGraphFetched('vod')
     .select('id', 'played', 'match_time','user_id')
-    .where('deleted_at', null);
+    .where('deleted_at', null).orderBy('match_time');
   res.json(matches)
 });
 
