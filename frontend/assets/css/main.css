@@ -286,7 +286,7 @@ body {
 @media all{
   .match-widget{
     width:100%;
-    height: 139px;
+    height: 145px;
     background-color:#0A0E13 ;
     border-bottom: 1px solid #2f2f2f;
     
@@ -357,8 +357,20 @@ body {
   }
   .match-container .day span{
     color: #8fa3b0;
-    font-size: 1.1rem;
+    font-size: 0.82rem;
     letter-spacing: 1px;
+    margin-right: 10px;
+  }
+  .match-container .league{
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+  }
+  .match-container .league span{
+    color: #8fa3b0;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    margin-right: 10px;
   }
   .match-container .time span {
     font-size: 12px;
