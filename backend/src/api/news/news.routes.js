@@ -12,7 +12,8 @@ const errors = {
 router.get('/', async (req, res, next) => {
   const news = await New
     .query()
-    .withGraphFetched('league', 'type', 'user')
+    .withGraphFetched('league')
+    .withGraphFetched('type')
     .select('id', 'image_url', 'name', 'new_url')
     .where('deleted_at', null)
     .orderBy('created_at', 'desc');
@@ -25,7 +26,8 @@ router.get('/:id', async (req, res, next) => {
   try {
     const news = await New
     .query()
-    .withGraphFetched('league', 'type', 'user')
+    .withGraphFetched('league')
+    .withGraphFetched('type')
     .select('id', 'image_url', 'name', 'new_url')
     .where({
       deleted_at: null,

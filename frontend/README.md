@@ -54,3 +54,7 @@
     [x] HTML
     [x] JAVASCRIPT
     [x] CSS
+
+
+
+#TODO: Think if need to add stream request on api for banner.

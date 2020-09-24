@@ -76,19 +76,22 @@ async function matchWidget() {
   }
   logger('info', 'Matches -> Loaded');
 }
-function bannerWidget() {
+
+async function bannerWidget() {
   logger('info','Banner -> Loaded');
 }
 
-function newsWidget() {
+async function newsWidget() {
+  var url = 'http://localhost:5050/api/v1/news';
+  const request = await fetch(url);
+  const json = await request.json();
+  console.log(json);
   logger('info','News -> Loaded');
 }
 
-function vodsWidget() { 
+async function vodsWidget() { 
   logger('info','Vods -> Loaded');
 }
-
-
 
 
 async function teams(id) {
