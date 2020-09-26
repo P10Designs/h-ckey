@@ -71,6 +71,8 @@ exports.up = async (knex) => {
 
   await knex.schema.createTable(tableNames.vods, (table) => {
     table.increments().notNullable();
+    name(table).notNullable();
+    url(table, 'image').notNullable();
     references(table, tableNames.team, true, 'local');
     references(table, tableNames.team, true, 'visitor');
     table.integer('local_result').notNullable();

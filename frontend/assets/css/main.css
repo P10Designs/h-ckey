@@ -632,12 +632,9 @@ body {
   }
 }
 
-
-
 /* VODS */
 
 @media all{
-
   .vods-widget{
     border-left: 1px solid #2f2f2f;
     background-color: #0a0e13 ;
@@ -667,7 +664,6 @@ body {
     font-size: 1.2rem;
     justify-content: center;
     padding: 5px 0;
-    text-decoration: none;
     color: #000;
     font-weight: bolder;
     text-decoration: none;
@@ -679,10 +675,10 @@ body {
   .vods-widget .vods-content .vod a{
     display: flex;
     flex-direction: row;
-    
+    text-decoration: none;
   }
   .vods-content .vod .miniatura{
-    width: 40%;
+    width: 30%;
   }
   .vods-content .vod .miniatura img {
     height: auto;
@@ -691,13 +687,27 @@ body {
   .vods-content .vod .text{
     margin-left: 8px;
   }
+  .vods-content .vod .text .vod-league{
+    color: #788a96;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .vods-content .vod .text .vod-title{
+    color: #f2f2f2;
+    font-weight: bold;
+    width: auto;
+    line-height: 18px;
+  }
 }
 @media (max-width:1023px){
   .vods-widget .vods-content .vod{
-    margin: 10px 30px;
+    margin: 10px 20px;
   };
-  .vods-widget .more{
+  .vods-widget .more a{
     scale: 85% !important;
   }
-  
+  .vods-content .vod .miniatura {
+    width: 30%;
+  }
 }

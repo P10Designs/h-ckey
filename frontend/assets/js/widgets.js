@@ -112,14 +112,42 @@ async function newsWidget() {
         </div>
       </a>
     </div>`
-      console.log(data);
     } catch (error) {
       
     }
+  }
   logger('info','News -> Loaded');
-}}
+}
 
-async function vodsWidget() { 
+async function vodsWidget() {
+  const url = 'http://localhost:5050/api/v1/vods';
+  const request = await fetch(url)
+  const json = await request.json();
+  if(json.length > 0){
+    console.log('here');
+    for(var i = 0; i < 4; i++){
+      const vod = {
+        name: json[i].name,
+        league: json[i].league.name,
+        image_url: json[i].image_url,
+        url: json[i].video_url,
+      }
+      const match = `<div class="vod">
+      <a href="${vod.url}">
+        <div class="miniatura">
+          <img src="${vod.image_url}" alt="miniatura">
+        </div>              
+        <div class="text">
+          <div class="vod-league">${vod.league}</div>
+          <div class="vod-title">${vod.name}</div>
+        </div>
+      </a>
+      </div>`;
+      console.log(match);
+      document.querySelector('.vods-content').innerHTML += match;
+      console.log(vod);
+    }
+  }
   logger('info','Vods -> Loaded');
 }
 

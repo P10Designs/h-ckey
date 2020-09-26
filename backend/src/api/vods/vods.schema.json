@@ -4,6 +4,7 @@
   "title": "User",
   "description": "The User.",
   "required": [
+    "name",
     "local_id",
     "visitor_id",
     "local_result",
@@ -14,6 +15,11 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "name":{
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The name of the vod."
+    },
     "id": {
       "$id": "#/properties/id",
       "type": "integer",

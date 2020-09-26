@@ -16,8 +16,8 @@ router.get('/', async(req, res, next) => {
     .withGraphFetched('local')
     .withGraphFetched('visitor')
     .withGraphFetched('league')
-    .select('id','local_result','visitor_result','video_url','user_id')
-    .where('deleted_at',null);
+    .select('id','name','image_url','local_result','visitor_result','video_url','user_id')
+    .where('deleted_at',null).orderBy('id', 'desc');
   res.status(200)
   res.json(vods);
 });
@@ -30,11 +30,11 @@ router.get('/:id', async(req, res, next) => {
     .withGraphFetched('local')
     .withGraphFetched('visitor')
     .withGraphFetched('league')
-    .select('id','local_result','visitor_result','video_url','user_id')
+    .select('id','name', 'image_url','local_result','visitor_result','video_url','user_id')
     .where({
       deleted_at: null,
       id,
-    });
+    })
     if (undefined || vods.length < 1) {
       res.status(404);
       throw error;
@@ -48,6 +48,8 @@ router.get('/:id', async(req, res, next) => {
 });
 
 const schema = yup.object().shape({
+  image_url: yup.string().trim().max(2000).required(),
+  name: yup.string().trim().required(),
   local_id: yup.number().required(),
   visitor_id: yup.number().required(),
   local_result: yup.number().required(),
@@ -60,6 +62,8 @@ const schema = yup.object().shape({
 router.post('/add', async (req, res, next) => {
   const {
     jwt,
+    image_url,
+    name,
     local_id,
     visitor_id,
     local_result,
@@ -76,6 +80,8 @@ router.post('/add', async (req, res, next) => {
     }
     const user_id = payload.payload.id;
     await schema.validate({
+      name,
+      image_url,
       local_id,
       visitor_id,
       local_result,
@@ -87,6 +93,8 @@ router.post('/add', async (req, res, next) => {
     const toAdd = await Vod
     .query()
     .insert({
+      image_url,
+      name,
       local_id,
       visitor_id,
       local_result,
@@ -108,6 +116,8 @@ router.post('/add', async (req, res, next) => {
 router.post('/update/:id', async (req, res, next) => {
   const {
     jwt,
+    image_url,
+    name,
     local_id,
     visitor_id,
     local_result,
@@ -125,6 +135,8 @@ router.post('/update/:id', async (req, res, next) => {
     }
     const user_id = payload.payload.id;
     await schema.validate({
+      name,
+      image_url,
       local_id,
       visitor_id,
       local_result,
@@ -136,6 +148,8 @@ router.post('/update/:id', async (req, res, next) => {
     const toUpdate = await Vod
     .query()
     .insert({
+      name,
+      image_url,
       local_id,
       visitor_id,
       local_result,
@@ -145,11 +159,11 @@ router.post('/update/:id', async (req, res, next) => {
       user_id,
       updated_at: new Date().toISOString(),
     }).where({ id });
-  res.status(200)
-  res.json({
-    message: 'Vod was updated ✅', 
-    new: toUpdate,
-  })
+    res.status(200)
+    res.json({
+      message: 'Vod was updated ✅', 
+      new: toUpdate,
+    })
   } catch (error) {
     next(error)
   }
@@ -172,11 +186,11 @@ router.delete('/delete/:id', async (req, res, next) => {
     const toDelete = await Vod
     .query()
     .deleteById(id);
-  res.status(200)
-  res.json({
-    message: 'Vod was deleted ✅', 
-    new: toDelete,
-  })
+    res.status(200)
+    res.json({
+      message: 'Vod was deleted ✅', 
+      new: toDelete,
+    })
   } catch (error) {
     next(error)
   }
