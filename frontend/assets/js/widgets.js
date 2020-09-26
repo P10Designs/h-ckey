@@ -1,10 +1,12 @@
 document.body.onload = async () => {
   await header();
-  await matchWidget();
+  matchWidget();
   await bannerWidget();
   await newsWidget();
   await vodsWidget();
+  document.querySelector('#preloader').style= "display:none;"
 }
+
 
 
 async function matchWidget() {
@@ -74,6 +76,7 @@ async function matchWidget() {
       }
     }
   }
+  document.querySelector('#match-preloader').style ="display:none;";
   logger('info', 'Matches -> Loaded');
 }
 
@@ -96,11 +99,7 @@ async function newsWidget() {
         type: json[i].type.name,
         name:json[i].name,
       }
-      if (column==1) {
-        column = 2;
-      } else if (column==2){
-        column = 1;
-      }
+      
       document.getElementById(column).innerHTML +=  `<div class="new">
       <a href="${data.url}">
         <div class="miniatura">
@@ -111,7 +110,12 @@ async function newsWidget() {
           <div class="new-title">${data.name}</div>
         </div>
       </a>
-    </div>`
+      </div>`;
+      if (column==1) {
+        column = 2;
+      } else if (column==2){
+        column = 1;
+      }
     } catch (error) {
       
     }
@@ -123,10 +127,10 @@ async function vodsWidget() {
   const url = 'http://localhost:5050/api/v1/vods';
   const request = await fetch(url)
   const json = await request.json();
-  if(json.length > 0){
-    console.log('here');
+  if(json.length != 0){
     for(var i = 0; i < 4; i++){
-      const vod = {
+      try {
+        const vod = {
         name: json[i].name,
         league: json[i].league.name,
         image_url: json[i].image_url,
@@ -143,9 +147,11 @@ async function vodsWidget() {
         </div>
       </a>
       </div>`;
-      console.log(match);
       document.querySelector('.vods-content').innerHTML += match;
-      console.log(vod);
+      } catch (error) {
+        
+      }
+      
     }
   }
   logger('info','Vods -> Loaded');
@@ -177,7 +183,7 @@ async function date(date) {
   var given = new Date(String(date), );
   var today = new Date();
 
-  if((given.getUTCDate() - today.getUTCDate()) < 8){
+  if(given.getMonth() == today.getMonth() && (given.getUTCDate() - today.getUTCDate()) < 8){
     var weekday = new Array();
     weekday[0] = "Domingo";
     weekday[1] = "Lunes";

@@ -1,54 +1,54 @@
-[ ] HOME PAGE
+[x] HOME PAGE
   [x] Header
     [x] HTML
     [x] JAVASCRIPT
     [x] CSS
 
-  [ ] Match Widget
+  [x] Match Widget
     [x] HTML
-    [ ] JAVASCRIPT
+    [x] JAVASCRIPT
     [x] CSS
 
-  [ ] Loading
-    [ ] HTML
-    [ ] JAVASCRIPT
-    [ ] CSS
+  [x] Loading
+    [x] HTML
+    [x] JAVASCRIPT
+    [x] CSS
 
   [x] Banner
     [x] HTML
     [x] JAVASCRIPT
     [x] CSS
 
-  [ ] Videos
-    [ ] HTML
-    [ ] JAVASCRIPT
-    [ ] CSS
+  [x] Videos
+    [x] HTML
+    [x] JAVASCRIPT
+    [x] CSS
 
-  [ ] News
-    [ ] HTML
-    [ ] JAVASCRIPT
-    [ ] CSS
+  [x] News
+    [x] HTML
+    [x] JAVASCRIPT
+    [x] CSS
 
   [x] Footer
     [x] HTML
     [x] JAVASCRIPT
     [x] CSS
 
-[ ] NEWS 
+[x] NEWS 
   [x] Header
     [x] HTML
     [x] JAVASCRIPT
     [x] CSS
 
-  [ ] Loading
-    [ ] HTML
-    [ ] JAVASCRIPT
-    [ ] CSS
+  [x] Loading
+    [x] HTML
+    [x] JAVASCRIPT
+    [x] CSS
     
-  [ ] Content
-    [ ] HTML
-    [ ] JAVASCRIPT
-    [ ] CSS
+  [x] Content
+    [x] HTML
+    [x] JAVASCRIPT
+    [x] CSS
   
   [x] Footer
     [x] HTML
