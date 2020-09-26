@@ -85,9 +85,39 @@ async function newsWidget() {
   var url = 'http://localhost:5050/api/v1/news';
   const request = await fetch(url);
   const json = await request.json();
-  console.log(json);
+  var column = 1;
+  document.getElementById(1).innerHTML = ""
+  document.getElementById(2).innerHTML = ""
+  for(var i = 0; i < 4; i++){
+    try {
+      const data = {
+        img: json[i].image_url,
+        url: json[i].new_url,
+        type: json[i].type.name,
+        name:json[i].name,
+      }
+      if (column==1) {
+        column = 2;
+      } else if (column==2){
+        column = 1;
+      }
+      document.getElementById(column).innerHTML +=  `<div class="new">
+      <a href="${data.url}">
+        <div class="miniatura">
+          <img src="${data.img}" alt="miniatura" class="img">
+        </div>
+        <div class="text">
+          <div class="type">${data.type}</div>
+          <div class="new-title">${data.name}</div>
+        </div>
+      </a>
+    </div>`
+      console.log(data);
+    } catch (error) {
+      
+    }
   logger('info','News -> Loaded');
-}
+}}
 
 async function vodsWidget() { 
   logger('info','Vods -> Loaded');
@@ -135,17 +165,17 @@ async function date(date) {
   }else{
     var month = new Array();
     month[0] = "Enero";
-    month[1] = "Febrero";
+    month[1] = "Feb";
     month[2] = "Marzo";
     month[3] = "Abril";
     month[4] = "Mayo";
     month[5] = "Junio";
     month[6] = "Julio";
     month[7] = "Agosto";
-    month[8] = "Septiembre";
-    month[9] = "Octubre";
-    month[10] = "Noviembre";
-    month[11] = "Diciembre";
+    month[8] = "Sept";
+    month[9] = "Octu";
+    month[10] = "Novi";
+    month[11] = "Dici";
     var response = {
      weekday: `${given.getDate()} ${month[given.getMonth()]}`,
      time: `${given.getHours()}:${given.getMinutes()}`
@@ -154,4 +184,4 @@ async function date(date) {
   return response
 }
 
-//TODO: ALL WIDGETS EXCEPT MATCHES, NEED TO FINISH LEAGUES SELECTOR, NOT DONE YET, ITS DEACTIVATED ON HTML TOO 
+ 

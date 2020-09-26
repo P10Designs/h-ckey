@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
     .withGraphFetched('vod')
     .select('id', 'played', 'match_time','user_id')
     .where('deleted_at', null).orderBy('match_time');
+  res.status(200)
   res.json(matches)
 });
 
@@ -35,6 +36,7 @@ router.get('/:id', async (req, res, next) =>{
       res.status(404)
       throw error;
     }
+    res.status(200)
     res.json(matches)
   } catch (error) {
     next()
@@ -90,7 +92,7 @@ router.post('/add', async (req, res, next) => {
         match_time,
         user_id,
       });
-    
+    res.status(200) 
     res.json({
       message: 'Match has been added ✅',
       match: toAdd,
@@ -145,7 +147,7 @@ router.post('/update/:id', async (req, res, next) => {
         delete_at:null,
         id,
       });
-    
+    res.status(200)
     res.json({
       message: 'Match has been updated ✅',
       match: toUpdate,
@@ -170,6 +172,7 @@ router.delete('/delete/:id', async (req, res, next) => {
     const toDelete = await Match
     .query()
     .deleteById(id);
+  res.status(200)
   res.json({
     message: 'Match was deleted ✅', 
     new: toDelete,

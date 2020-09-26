@@ -9,6 +9,7 @@ router.get('/', async (req,res) => {
     .withGraphFetched('acronym', 'logo')
     .select('id', 'name')
     .where('deleted_at',null);
+  res.status(200)
   res.json(teams);
 });
 
@@ -28,6 +29,7 @@ router.get('/:id', async (req, res, next) => {
       res.status(404)
       throw error
     }
+    res.status(200)
     res.json(teams)
   } catch (error) {
     next();

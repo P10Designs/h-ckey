@@ -47,6 +47,7 @@ router.post('/login', async (req, res, next) => {
       username,
     };
     const token = await jwt.sign(payload)
+    res.status(200)
     res.json({
       user:payload,
       token

@@ -18,6 +18,7 @@ router.get('/', async(req, res, next) => {
     .withGraphFetched('league')
     .select('id','local_result','visitor_result','video_url','user_id')
     .where('deleted_at',null);
+  res.status(200)
   res.json(vods);
 });
 
@@ -38,6 +39,7 @@ router.get('/:id', async(req, res, next) => {
       res.status(404);
       throw error;
     }
+    res.status(200)
     res.json(vods);
   } catch (error) {
     next();
@@ -93,6 +95,7 @@ router.post('/add', async (req, res, next) => {
       video_url,
       user_id,
     });
+  res.status(200)
   res.json({
     message: 'Vod was added ✅', 
     new: toAdd,
@@ -142,6 +145,7 @@ router.post('/update/:id', async (req, res, next) => {
       user_id,
       updated_at: new Date().toISOString(),
     }).where({ id });
+  res.status(200)
   res.json({
     message: 'Vod was updated ✅', 
     new: toUpdate,
@@ -168,6 +172,7 @@ router.delete('/delete/:id', async (req, res, next) => {
     const toDelete = await Vod
     .query()
     .deleteById(id);
+  res.status(200)
   res.json({
     message: 'Vod was deleted ✅', 
     new: toDelete,

@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
     .withGraphFetched('match')
     .select('id', 'stream_url')
     .where('deleted_at', null);
+  res.status(200)
   res.json(lives)
 });
 
@@ -30,6 +31,7 @@ router.get('/:id', async (req, res, next) =>{
       res.status(404)
       throw error;
     }
+    res.status(200)
     res.json(lives)
   } catch (error) {
     next()
@@ -65,7 +67,7 @@ router.post('/add', async (req, res, next) => {
        stream_url,
        match_id,
       });
-    
+    res.status(200)
     res.json({
       message: 'Live event has been added ✅',
       match: toAdd,
@@ -106,7 +108,7 @@ router.post('/update/:id', async (req, res, next) => {
         delete_at:null,
         id,
       });
-    
+    res.status(200)
     res.json({
       message: 'Live event has been updated ✅',
       match: toUpdate,
@@ -131,6 +133,7 @@ router.delete('/delete/:id', async (req, res, next) => {
     const toDelete = await Live
     .query()
     .deleteById(id);
+  res.status(200)
   res.json({
     message: 'Live event was deleted ✅', 
     new: toDelete,

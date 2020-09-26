@@ -9,6 +9,7 @@ router.get('/', async (req,res,next) => {
     .query()
     .select('id', 'logo_url')
     .where('deleted_at', null);
+  res.status(200)
   res.json(logos);
 });
 
@@ -26,6 +27,7 @@ router.get('/:id', async (req,res, next) => {
       res.status(404);
       throw error;
     }
+    res.status(200)
     res.json(logos);
     
   } catch (error) {
