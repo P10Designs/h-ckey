@@ -5,6 +5,7 @@
   "description": "The User.",
   "required": [
     "name",
+    "match_date",
     "local_id",
     "visitor_id",
     "local_result",
@@ -15,6 +16,11 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "match_date":{
+      "$id": "#/properties/match_date",
+      "type": "string",
+      "title": "The date the match has been played."
+    },
     "name":{
       "$id": "#/properties/name",
       "type": "string",

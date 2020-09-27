@@ -16,10 +16,37 @@ router.get('/', async(req, res, next) => {
     .withGraphFetched('local')
     .withGraphFetched('visitor')
     .withGraphFetched('league')
-    .select('id','name','image_url','local_result','visitor_result','video_url','user_id')
+    .select('id','name','match_date','image_url','local_result','visitor_result','video_url','user_id')
     .where('deleted_at',null).orderBy('id', 'desc');
   res.status(200)
   res.json(vods);
+});
+
+router.get('/league/:league_id', async (req,res,next) => {
+  const { league_id } = req.params;
+  try {
+    const vods = await Vod
+    .query()
+    .withGraphFetched('local')
+    .withGraphFetched('visitor')
+    .withGraphFetched('league')
+    .select('id','name','match_date', 'image_url','local_result','visitor_result','video_url','user_id')
+    .where({
+      deleted_at: null,
+      league_id,
+    }).orderBy('match_date', 'desc')
+    if (undefined || vods.length < 1) {
+      res.status(404);
+      throw error;
+    }
+    res.status(200)
+    res.json(vods);
+  } catch (error) {
+    res.status(600)
+    res.json({
+      message: 'Not Found'
+    })
+  }
 });
 
 router.get('/:id', async(req, res, next) => {
@@ -48,6 +75,7 @@ router.get('/:id', async(req, res, next) => {
 });
 
 const schema = yup.object().shape({
+  match_date:  yup.string().trim().required(),
   image_url: yup.string().trim().max(2000).required(),
   name: yup.string().trim().required(),
   local_id: yup.number().required(),
@@ -62,6 +90,7 @@ const schema = yup.object().shape({
 router.post('/add', async (req, res, next) => {
   const {
     jwt,
+    match_date,
     image_url,
     name,
     local_id,
@@ -81,6 +110,7 @@ router.post('/add', async (req, res, next) => {
     const user_id = payload.payload.id;
     await schema.validate({
       name,
+      match_date,
       image_url,
       local_id,
       visitor_id,
@@ -93,6 +123,7 @@ router.post('/add', async (req, res, next) => {
     const toAdd = await Vod
     .query()
     .insert({
+      match_date,
       image_url,
       name,
       local_id,
@@ -116,6 +147,7 @@ router.post('/add', async (req, res, next) => {
 router.post('/update/:id', async (req, res, next) => {
   const {
     jwt,
+    match_date,
     image_url,
     name,
     local_id,
@@ -136,6 +168,7 @@ router.post('/update/:id', async (req, res, next) => {
     const user_id = payload.payload.id;
     await schema.validate({
       name,
+      match_date,
       image_url,
       local_id,
       visitor_id,
@@ -149,6 +182,7 @@ router.post('/update/:id', async (req, res, next) => {
     .query()
     .insert({
       name,
+      match_date,
       image_url,
       local_id,
       visitor_id,

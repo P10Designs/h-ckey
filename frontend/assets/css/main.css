@@ -220,6 +220,8 @@ body {
 
 @media all {
   .footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: #000;
     border-top: 1px solid #2f2f2f;
@@ -275,6 +277,7 @@ body {
   .body{
     margin-top:80px;
     width: 100%;
+    height: 100%;
   }
   .loading{
     width: 100%;
@@ -641,6 +644,7 @@ body {
     background-color: #0a0e13 ;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
   .vods-widget .title{
     color: #788a96;
@@ -650,6 +654,7 @@ body {
   }
   .vods-widget .more{ 
     width: 100%;
+    padding:20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -799,7 +804,6 @@ body {
     color: #fff;
     font-weight: bold;
     letter-spacing: 1px;
-    
   }
 }
 
@@ -914,5 +918,361 @@ body {
     margin:-5px 0;
     font-size: large;
     text-decoration: none;
+  }
+}
+
+/* VODS */
+
+/* selector */
+@media all{
+  .vods{
+    width: 100%;
+  }
+  .vods .selector{
+    width: 25%;
+    overflow-x: hidden;
+  }
+  .vods .container{
+    width: 100%;
+  }
+  .vods .selector .league:last-child{
+    border-bottom: 1px solid #252c32;
+  }
+}
+
+@media(min-width:1024px){
+  .vods .title-small{
+    display: none;
+  }
+  .vods .selector .title{
+    color: #8fa3b0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-left: 35px;
+    padding-top: 30px;
+    border-right: 1px solid #252c32;
+    font-size: large;
+    background-color: #0a0e13;
+    padding-bottom: 5px;
+  }
+  .vods{
+    display: flex;
+    flex-direction: row;
+  }
+  .vods .selector{
+    height: calc(100% - 75px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition:0.3s;
+  }
+  .vods .selected{
+    border-right: 4px solid #00c8c8!important;
+    --brightness:100%;
+    color:#fff !important;
+  }
+  .vods .selector .league:hover{
+    --brightness:100%;
+    border-right: 4px solid #252c32!important;
+    background:#000; 
+    color: #fff !important;
+  }
+  .vods .selector .league{
+    padding: 10px;
+    cursor: pointer;
+    color: #8fa3b0;
+    background-color: #0a0e13;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    border-top: 1px solid #252c32;
+    border-right: 1px solid #252c32;
+  }
+  .vods .selector .league .logo{
+    filter: brightness(var(--brightness));
+    display: flex;
+    align-items: center;
+  }
+  .vods .selector .league .logo img{
+    height: 50px;
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+  .vods .selector .league .name{
+    color:inherit;
+    letter-spacing: 1px;
+    font-size: large;
+  }
+
+}
+
+@media(max-width:1023px){
+  .vods .selector .title{
+    display: none;
+  }
+  .vods .title-small{
+    padding-left : 40px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #8fa3b0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #252c32;
+    font-size: x-large;
+    background-color: #0a0e13;
+  }
+  .vods .title-small svg {
+    margin-left: 10px;
+  }
+  .vods .title-small:hover{
+    color: #fff;
+  }
+  .vods{
+    display: flex;
+    flex-direction: column;
+  }
+  .vods .selector{
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .vods .selected{
+    border-right: 4px solid #00c8c8!important;
+    --brightness:100%;
+    color:#fff !important;
+  }
+  .vods .selector .league:hover{
+    filter: brightness(100%);
+    border-right: 4px solid #252c32!important;
+    background:#252c32; 
+  }
+  .vods .selector .league{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #0a0e13;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #8fa3b0;
+    border-top: 1px solid #252c32;
+    border-right: 1px solid #252c32;
+  }
+  .vods .selector .league .logo{
+    filter: brightness(var(--brightness));
+    display: flex;
+    align-items: center;
+  }
+  .vods .selector .league .logo img{
+    height: 50px;
+    transition: 0.3s;
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+  .vods .selector .league .name{
+    filter: brightness(inherit);
+    color:inherit;
+    letter-spacing: 1px;
+    font-size: large;
+  }
+}
+
+/* container */
+
+@media all{
+  .vods .container .dayStarter{
+    padding: 15px 5px 5px 0;
+    color: #fff;
+    font-weight: 900;
+    font-size: large;
+    letter-spacing: 0.5px;
+  }
+  .vods .container{
+    transition:0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .vods .container .vod{
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s;
+    justify-content: center;
+    border-bottom: 1px solid #252c32;
+    border-top: 1px solid #252c32;
+  }
+  .vods .container .vod:hover{
+    background-color: #000;
+  }
+  .vods .container .vod .text{
+    color: #8fa3b0;
+  }
+  .vods .container .vod .local,
+  .vods .container .vod .visitor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #f2f2f2;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding:10px;
+  }
+  .vods .container .vod .local img,
+  .vods .container .vod .visitor img{
+    height: 73px;
+    width: 73px;
+    margin: 10px;
+  }
+}
+
+@media(min-width:1024px){
+  .vods .container .dayStarter {
+    width: 90%;
+    align-content: baseline;
+  }
+  .vods .container .vod{
+    width: 90%;
+  }
+  .vods .container .vod:hover{
+    width: 100%;
+  }
+}
+@media(max-width:1023px){
+  .vods .container .dayStarter{
+    width:95%;
+  }
+  .vods .container .vod:hover{
+    width: 100%;
+  }
+
+  .vods .container .vod{
+    width: 95%;
+  }
+}
+
+#preloader-container{
+  position: absolute;
+  align-self: center;
+  width:75%;
+  height: 100%;
+  z-index: 90;
+  background-color:#0f1519;
+}
+
+
+/* CALENDAR */
+
+@media all{
+  .calendar{
+    display: flex;
+    width: 100%;
+  }
+  .calendar .selector{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .calendar .selected {
+    border-left: 4px solid #00c8c8 !important;
+    --brightness: 100%;
+    color:#f2f2f2 !important;
+}
+  .calendar .selector .league{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+  }
+  .calendar .selector .league{
+    padding: 10px;
+    cursor: pointer;
+    background-color: #0a0e13;
+    transition: 0.3s;
+    display: flex;
+    --brightness: 60%;
+    color:#8fa3b0;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #252c32;
+    border-left: 1px solid #252c32;
+  }
+  .calendar .selector .league:last-child{
+    border-bottom: 1px solid #252c32;
+  }
+  .calendar .selector .league:hover {
+    --brightness: 100%;
+    border-left: 4px solid #252c32 !important;
+    color: #f2f2f2;
+    background: #000;
+  }
+  .calendar .selector .league .name{    
+    color:  inherit;
+    letter-spacing: 1px;
+    font-size: large;
+  }
+  .calendar .selector .league .logo{
+    display: flex;
+    align-items: center;
+  }
+  .calendar .selector .league .logo img {
+    filter: brightness(var(--brightness));
+    height: 50px;
+    transition: 0.3s;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media(min-width:1024px){
+  .calendar .selector .title{
+    background-color: #0a0e13;
+    height:50px;
+    color:#8fa3b0;
+    font-weight: bold;
+    font-size: medium;
+    letter-spacing: 1px;
+    padding-left: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+    align-items: flex-end;
+    border-left: 1px solid #252c32;
+  }
+  .calendar .title-small{
+    display: none;
+  }
+  .calendar{
+    flex-direction: row-reverse;
+  }
+  .calendar .calendar-content{
+    display:flex;
+    flex-direction:column;
+    width:80%;
+  }
+  .calendar .selector{
+    width: 20%;
+  }
+}
+
+@media(max-width:1023px){
+  .calendar{
+    flex-direction: column;
+  }
+  .calendar .selector .league{
+    width: 100%;
+  }
+
+  .calendar .selector .title{
+    display: none;
   }
 }

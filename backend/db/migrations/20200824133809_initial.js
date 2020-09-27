@@ -73,6 +73,7 @@ exports.up = async (knex) => {
     table.increments().notNullable();
     name(table).notNullable();
     url(table, 'image').notNullable();
+    table.timestamp('match_date', {useTz: true}).notNullable();
     references(table, tableNames.team, true, 'local');
     references(table, tableNames.team, true, 'visitor');
     table.integer('local_result').notNullable();

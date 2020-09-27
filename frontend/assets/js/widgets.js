@@ -76,7 +76,12 @@ async function matchWidget() {
       }
     }
   }
-  document.querySelector('#match-preloader').style ="display:none;";
+  if(document.querySelector('.match-container').childNodes.length == 0){
+    document.querySelector('.match-widget').style = ` display:flex;height:70px; color:#fff;align-items:center; justify-content:center;`;
+    document.querySelector('.match-widget').innerHTML = `<div style="font-weight:bold;font-size:large;">No hay partidos programados.</div>`;
+  }else{;
+    document.querySelector('#match-preloader').style ="display:none;";
+  }
   logger('info', 'Matches -> Loaded');
 }
 
@@ -120,6 +125,10 @@ async function newsWidget() {
       
     }
   }
+  if(document.getElementById(1).childNodes.length == 0){
+    document.querySelector('.news-content').style = ` display:flex;height:70px; color:#fff;align-items:center; justify-content:center;`;
+    document.querySelector('.news-content').innerHTML = `<div style="font-weight:bold;font-size:large;">No hay noticias para mostrar.</div>`;
+  }
   logger('info','News -> Loaded');
 }
 
@@ -154,6 +163,10 @@ async function vodsWidget() {
       
     }
   }
+  if(document.querySelector('.vods-content').childNodes.length == 0){
+    document.querySelector('.vods-content').style = ` display:flex; color:#fff;align-items:center; justify-content:center;`;
+    document.querySelector('.vods-content').innerHTML = `<div style="font-weight:bold;font-size:large;">No hay videos para mostrar.</div>`;
+  }
   logger('info','Vods -> Loaded');
 }
 
@@ -182,8 +195,16 @@ async function leagues(id) {
 async function date(date) {
   var given = new Date(String(date), );
   var today = new Date();
-
-  if(given.getMonth() == today.getMonth() && (given.getUTCDate() - today.getUTCDate()) < 8){
+  if(given.getMonth() == today.getMonth() && (given.getUTCDate() - today.getUTCDate()) < 8 && (given.getUTCDate() - today.getUTCDate()) < 2 ){
+    const number = given.getUTCDate() - today.getUTCDate();
+    var weekday = new Array();
+    weekday[0] = "Hoy";
+    weekday[1] = "Mañana";
+    var response = {
+      weekday: weekday[number],
+      time: `${given.getHours()}:${given.getMinutes()}`
+    }
+  }else if(given.getMonth() == today.getMonth() && (given.getUTCDate() - today.getUTCDate()) < 8 && (given.getUTCDate() - today.getUTCDate()) > 1 ){
     var weekday = new Array();
     weekday[0] = "Domingo";
     weekday[1] = "Lunes";

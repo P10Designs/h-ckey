@@ -37,6 +37,10 @@ async function loader() {
       column = 1;
     }
   }
+  if(document.getElementById(1).childNodes.length == 0){
+    document.querySelector('.wrapper').style = ` display:flex; color:#fff;align-items:center; justify-content:center;`;
+    document.querySelector('.wrapper').innerHTML = `<div style="padding:30px;height:70vh;font-weight:bold;font-size:large;">No hay noticias para mostrar.</div>`;
+  }
   logger('info','News -> Loaded');
 
 }
