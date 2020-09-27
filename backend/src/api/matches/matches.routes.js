@@ -18,6 +18,31 @@ router.get('/', async (req, res, next) => {
   res.status(200)
   res.json(matches)
 });
+router.get('/league/:league_id', async (req, res, next) =>{
+  const { league_id } = req.params;
+  try {
+    const matches = await Match
+    .query()
+    .withGraphFetched('local')
+    .withGraphFetched('visitor')
+    .withGraphFetched('league')
+    .withGraphFetched('vod')
+    .select('id', 'played', 'match_time','user_id')
+    .where({
+      league_id,
+      deleted_at: null,
+    }).orderBy('math_time', 'desc');
+    if(undefined || matches.length<1){
+      throw error;
+    }
+    res.status(200)
+    res.json(matches)
+  } catch (error) {
+    res.status(600)
+    next()
+  }
+});
+
 
 router.get('/:id', async (req, res, next) =>{
   const { id } = req.params;

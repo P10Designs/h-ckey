@@ -1106,7 +1106,6 @@ body {
     text-decoration: none;
     transition: 0.3s;
     justify-content: center;
-    border-bottom: 1px solid #252c32;
     border-top: 1px solid #252c32;
   }
   .vods .container .vod:hover{
@@ -1268,11 +1267,375 @@ body {
   .calendar{
     flex-direction: column;
   }
+  .calendar .selector{
+    display: none;
+  }
   .calendar .selector .league{
     width: 100%;
+  }
+  .calendar .title-small{
+    background-color: #0a0e13;
+    height:50px;
+    color:#00c8c8;
+    font-weight: bold;
+    font-size: medium;
+    letter-spacing: 1px;
+    padding-right: 30px;
+    padding-bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    border-bottom: 1px solid #252c32;
+  }
+  .calendar .title-small .span{
+    cursor: pointer;
   }
 
   .calendar .selector .title{
     display: none;
+  }
+}
+
+@media all{
+  .calendar .calendar-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media(min-width:1024px){
+  .calendar .calendar-content{
+    width: 80%;
+  }
+  .calendar .calendar-content .old,
+  .calendar .calendar-content .new{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .calendar .calendar-content .dayStarter{
+    align-self: baseline;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    font-size:x-large;
+    padding: 10px 0;
+  }
+  .calendar .calendar-content .match{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #252c32;
+  }
+  .calendar .calendar-content .new:last-child,
+  .calendar .calendar-content .old:last-child{
+    border-bottom: 1px solid #252c32;
+  }
+  .calendar .calendar-content .match .time{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-top: -15px;
+    justify-content: center;
+  }
+  .calendar .calendar-content .match .data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding:10px 0 ;
+  }
+  .calendar .calendar-content .match .data .team{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+  .calendar .calendar-content .match .data .team:last-child{
+    flex-direction: row;
+  }
+
+  .calendar .calendar-content .new .match .time .handler{
+    display: flex;
+    color: #f2f2f2;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: baseline;
+  }
+  .calendar .calendar-content .new .match .time .aprox{
+    color: #8fa3b0;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: -25px;
+  }
+  .calendar .calendar-content .new .match .time .handler .hours{
+    font-size: 50px;
+  }
+  .calendar .calendar-content .new .match .time .handler .minutes{
+    padding-top: 15px;
+    padding-left: 5px;
+  }
+  .calendar .calendar-content .new .match .data .team img{
+    height: 90px;
+    width: 90px;
+    margin:0 10px;
+  }
+  .calendar .calendar-content  .old .match .data .winner img{
+    filter: brightness(100%) !important;
+    height: 90px;
+    width: 90px;
+    margin:0 10px;
+  }
+  .calendar .calendar-content .old .match .data .team img{
+    filter: brightness(40%);
+    height: 90px;
+    width: 90px;
+    margin:0 10px;
+  }
+  .calendar .calendar-content .match .data .team .name{
+    color: #8fa3b0;
+    font-size: larger;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .calendar .calendar-content .new .match .data .vs{
+    color: #8fa3b0;
+    font-size: medium;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .calendar .calendar-content .old .match{
+    text-decoration: none;
+  }
+  .calendar .calendar-content .old .match .time .handler{
+    display: flex;
+    flex-direction: row;
+  }
+  .calendar .calendar-content .old .match .time .handler .hours{
+    font-size: 50px;
+  }
+  .calendar .calendar-content .old .match .time .handler .minutes{
+    padding-top: 15px;
+    padding-left: 5px;
+  }
+  .calendar .calendar-content .old .match .time{
+    display: flex;
+    color: #f2f2f2;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: baseline;
+  }
+  
+  .calendar .calendar-content .old .match .data .result{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers{
+    text-decoration: none;
+    color: #fff;
+    font-weight: bolder;
+    font-size: large;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers .left{
+    margin-right: 31px;
+  }
+  .calendar .calendar-content .old .match .data .winner{
+    color: #fff !important;
+  }
+  .calendar .calendar-content .old .match .data .team{
+    color: #8fa3b0;
+  }
+  .calendar .calendar-content .old .match .data .team .name{
+    color: inherit;
+  }
+  .calendar .calendar-content .old .match .data .result .arrow{
+    color:#b19955 ;
+    display: flex;
+    align-items: center;
+  }
+  .calendar .calendar-content .old .match .data .result  .left{
+    margin-right: 3px;
+  }
+  
+}
+
+@media(max-width:1023px){
+  .calendar .calendar-content{
+    width: 100%;
+  }
+  .calendar .calendar-content .old,
+  .calendar .calendar-content .new{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .calendar .calendar-content .dayStarter{
+    align-self: baseline;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    font-size:large;
+    padding: 10px 0;
+  }
+  .calendar .calendar-content .match{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: baseline;
+    border-top: 1px solid #252c32;
+  }
+  .calendar .calendar-content .new:last-child,
+  .calendar .calendar-content .old:last-child{
+    border-bottom: 1px solid #252c32;
+  }
+  .calendar .calendar-content .match .time{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-top: -15px;
+    justify-content: center;
+  }
+  .calendar .calendar-content .match .data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:10px 50px ;
+  }
+  .calendar .calendar-content .match .data .team{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .calendar .calendar-content .match .data .team:last-child{
+    flex-direction: row;
+  }
+
+  .calendar .calendar-content .new .match .time .handler{
+    display: flex;
+    color: #f2f2f2;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: baseline;
+  }
+  .calendar .calendar-content .new .match .time .aprox{
+    color: #8fa3b0;
+    font-weight: bold;
+    font-size: smaller;
+    margin-top: -15px;
+  }
+  .calendar .calendar-content .new .match .time .handler .hours{
+    font-size: 35px;
+  }
+  .calendar .calendar-content .new .match .time .handler .minutes{
+    padding-top: 9px;
+    padding-left: 2px;
+  }
+  .calendar .calendar-content .new .match .data .team img{
+    vertical-align: middle;
+    height: 25px;
+    width: 25px;
+    margin:0 9px;
+  }
+  .calendar .calendar-content  .old .match .data .winner img{
+    filter: brightness(100%) !important;
+    height: 25px;
+    width: 25px;
+    margin:0 9px;
+  }
+  .calendar .calendar-content .old .match .data .team img{
+    filter: brightness(40%);
+    height: 25px;
+    width: 25px;
+    margin:0 9px;
+  }
+  .calendar .calendar-content .match .data .team .name{
+    color: #8fa3b0;
+    font-size: larger;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .calendar .calendar-content .new .match .data .vs{
+    display: none;
+  }
+  .calendar .calendar-content .old .match{
+    text-decoration: none;
+  }
+  .calendar .calendar-content .old .match .time .handler .hours{
+    font-size: 35px;
+  }
+  .calendar .calendar-content .old .match .time .handler .minutes{
+    padding-top: 9px;
+    padding-left: 2px;
+  }
+  .calendar .calendar-content .old .match .time{
+    display: flex;
+    color: #f2f2f2;
+    font-weight: bold;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: baseline;
+  }
+  .calendar .calendar-content .old .match .data .result{
+    display: flex;
+    position: absolute;
+    left: 300px;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers .winner{
+    color: #b19955 !important;
+  }
+  
+  .local-result .visitor-result{
+    color: inherit;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .calendar .calendar-content .old .match .data .result .dash{
+    display: none;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers{
+    text-decoration: none;
+    color: #8fa3b0;
+    font-weight: bolder;
+    font-size: large;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers .left{
+    margin-right: 31px;
+  }
+  .calendar .calendar-content .old .match .data .winner{
+    color: #fff !important;
+  }
+  .calendar .calendar-content .old .match .data .team{
+    color: #8fa3b0;
+  }
+  .calendar .calendar-content .old .match .data .team .name{
+    color: inherit;
+  }
+  .calendar .calendar-content .old .match .data .result .arrow{
+    display: none;
+  }
+  .calendar .calendar-content .old .match .data .result  .left{
+    margin-right: 3px;
+  }
+  .calendar .calendar-content .old .match .time .handler{
+    display: flex;
+    flex-direction: row;
   }
 }
