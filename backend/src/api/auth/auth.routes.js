@@ -12,8 +12,8 @@ const errors = {
 }
 
 const schema = yup.object().shape({
-  username: yup.string().trim().min(2).required(),
-  password: yup.string().trim().min(8).max(100).required(),
+  username: yup.string().trim().required(),
+  password: yup.string().trim().max(100).required(),
 });
 
 router.post('/login', async (req, res, next) => {
@@ -21,7 +21,7 @@ router.post('/login', async (req, res, next) => {
     username,
     password,
   } = req.body;
-
+  console.log(req.body);
   try {
     await schema.validate({
         username,

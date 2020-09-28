@@ -220,7 +220,6 @@ body {
 
 @media all {
   .footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #000;
@@ -1317,6 +1316,9 @@ body {
     align-items: center;
     justify-content: center;
   }
+  .calendar .calendar-content .new{
+    margin-bottom: 50px;
+  }
   .calendar .calendar-content .dayStarter{
     align-self: baseline;
     color: #fff;
@@ -1446,7 +1448,10 @@ body {
     font-size: large;
   }
   .calendar .calendar-content .old .match .data .result .numbers .left{
-    margin-right: 31px;
+    margin-right: 3px;
+  }
+  .calendar .calendar-content .old .match .data .result .numbers .right{
+    margin-left: 3px;
   }
   .calendar .calendar-content .old .match .data .winner{
     color: #fff !important;
@@ -1464,6 +1469,9 @@ body {
   }
   .calendar .calendar-content .old .match .data .result  .left{
     margin-right: 3px;
+  }
+  .calendar .calendar-content .old .match .data .result  .right{
+    margin-left: 3px;
   }
   
 }
@@ -1619,6 +1627,12 @@ body {
   .calendar .calendar-content .old .match .data .result .numbers .left{
     margin-right: 31px;
   }
+  .calendar .calendar-content .old .match .data .result .numbers .right{
+    margin-left: 31px;
+  }
+  .calendar .calendar-content .old .match .data .result  .right{
+    margin-left: 3px;
+  }
   .calendar .calendar-content .old .match .data .winner{
     color: #fff !important;
   }
@@ -1637,5 +1651,32 @@ body {
   .calendar .calendar-content .old .match .time .handler{
     display: flex;
     flex-direction: row;
+  }
+}
+
+@media all{
+  .calendar .adviser{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    color: #fff;
+    font-weight: bold;
+    width: 15%;
+    height: 30px;
+    padding: 20px;
+    margin: 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #000;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .calendar .adviser:hover{
+    background-color: #0a0e13;
+  }
+  .calendar .adviser svg{
+    margin: 15px 10px;
   }
 }

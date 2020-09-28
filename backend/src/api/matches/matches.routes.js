@@ -18,6 +18,7 @@ router.get('/', async (req, res, next) => {
   res.status(200)
   res.json(matches)
 });
+
 router.get('/league/:league_id', async (req, res, next) =>{
   const { league_id } = req.params;
   try {
@@ -31,7 +32,7 @@ router.get('/league/:league_id', async (req, res, next) =>{
     .where({
       league_id,
       deleted_at: null,
-    }).orderBy('math_time', 'desc');
+    }).orderBy('match_time', 'desc');
     if(undefined || matches.length<1){
       throw error;
     }
@@ -39,7 +40,9 @@ router.get('/league/:league_id', async (req, res, next) =>{
     res.json(matches)
   } catch (error) {
     res.status(600)
-    next()
+    res.json({
+      message: 'Not Found'
+    })
   }
 });
 

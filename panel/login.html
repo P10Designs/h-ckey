@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H-CKEY PANEL</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form onsubmit="event.preventDefault()">
+      <div class="user-box">
+        <input type="text" name="username" id="username" required>
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password"id="password" required>
+        <label>Password</label>
+      </div>
+      <button id="login">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+  <script>
+    document.body.onload = async () => {
+      document.querySelector('#login').addEventListener('click', async()=>{
+        if(document.querySelector('#username').value == ""){
+
+        }else if(document.querySelector('#password').value == ""){
+          
+        }else{
+          document.querySelector('form')
+        const url = 'http://localhost:5050/api/v1/auth/login'
+        const body = {
+          username: document.querySelector('#username').value,
+          password: document.querySelector('#password').value,
+        }
+        const request = await fetch(url,{
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        const json = await request.json()
+        if (request.status == 403) {
+          alert(json.message)
+          location.reload(); 
+        }else if(request.status == 500){
+          alert(json.message);
+          location.reload();
+        }else{
+          document.cookie = `jwt_token=${json.token}`;
+          window.location.href = '/';
+        }
+        }
+        })
+      }
+
+  </script>
+</body>
+</html>
